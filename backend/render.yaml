@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: compra-inteligente-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false          # se pone manualmente en el dashboard de Render
+      - key: SECRET_KEY
+        sync: false
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "480"
+      - key: PYTHON_VERSION
+        value: "3.12.1"
